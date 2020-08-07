@@ -1,0 +1,84 @@
+   <style>
+  table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+</style>
+{% extends 'layout.html' %}
+
+{% block body %}
+  
+    <h1 style="text-align: center;">EC2 Instances</h1>
+{% if auto %}
+<form action="{{url_for('manual_mode')}}" method='get'>
+                    <input type='submit' value='Start Manual Mode' />
+                </form>
+
+{% else %}
+
+<form action="{{url_for('ec2_create')}}" method='get'>
+                    <input type='submit' value='Add New' />
+                </form>
+
+<form action="{{url_for('killall')}}" method='post' onsubmit='return confirm("Are you sure?")'>
+                    <input type='submit' value='Delete all Data' />
+                </form>
+
+<form action="{{url_for('auto_mode')}}" method='get'>
+                    <input type='submit' value='Start Auto Mode' />
+                </form>
+
+  {% endif %}
+
+  <form style="padding-left: 89%" action="{{url_for('ec2_summary')}}" method='get'>
+                    <input type='submit' value='Summary of all Instances' />
+                </form>
+	
+  <table class="table">
+  <thead>
+    <tr style="background-color: #4FE8EB;">
+      <th scope="col">ID</th>
+      <th scope="col">Type</th>
+      <th scope="col">Availability Zone</th>
+      <th scope="col">State</th>
+      <th scope="col">View Details</th>
+
+      {% if not auto %}
+      <th scope="col">Delete Instances</th>
+      {% endif %}
+    </tr>
+  </thead>
+  <tbody>
+      	{% for instance in instances %}
+        <tr>
+            <td>{{ instance.id }}</td>
+            <td>{{ instance.instance_type }}</td>
+            <td>{{ instance.placement['AvailabilityZone']}}</td>
+            <td>{{ instance.state['Name'] }}</td>
+            <td>
+                <form action="{{url_for('ec2_view',id=instance.id)}}" method='get'>
+                    <input type='submit' value='Details' />
+                </form>
+            </td>
+          {% if not auto %}
+            <td>
+                <form action="{{url_for('ec2_destroy',id=instance.id)}}" method='post' onsubmit='return confirm("Are you sure?")'>
+                    <input type='submit' value='Delete' />
+                </form>
+            </td>
+          {% endif %}
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+ 
+{% endblock %}

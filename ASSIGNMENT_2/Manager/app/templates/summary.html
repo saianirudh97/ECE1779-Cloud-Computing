@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h1 style="text-align: center;">Summary</h1>
+   <form  style="padding-left: 90%" action='{{url_for("home")}}' method='get'>
+        <input type='submit' value='Back' />
+    </form>
+
+<h2>Total CPU Load</h2>
+
+    <div id="cpu_plot" style="width:300px;height:150px"></div>
+
+<h2>Total HTTP Requests</h2>
+
+    <div id="http_requests" style="width:300px;height:150px"></div>
+
+<h2>Total Workers</h2>
+
+    <div id="workers" style="width:300px;height:150px"></div>
+        
+    <script>
+
+        var options = {
+            series: {
+                lines: { show: true },
+                points: { show: true }
+            }
+        };
+
+
+        $.plot($("#cpu_plot"), [ {{ cpu_stats }} ] , options);
+        $.plot($("#http_requests"), [ {{ http_req_stats }} ] , options);
+        $.plot($("#workers"), [ {{ num_workers_stats }} ] , options);
+    </script>
+{% endblock %}

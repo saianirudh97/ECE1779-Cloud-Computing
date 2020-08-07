@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <h1 style="text-align: center;">Configuration</h1>
+
+    <form  style="padding-left: 90%" action='{{url_for("home")}}' method='get'>
+        <input type='submit' value='Back' />
+    </form>
+  
+  <form action="" method="POST">
+    <div class="form-group">
+      <label>Max Threshold</label>
+      <input type="text" name="max_thresh" class="form-control" value={{request.form.max_thresh}} {{max_thresh}} >
+    </div>
+    <div class="form-group">
+      <label>Min Threshold</label>
+      <input type="text" name="min_thresh" class="form-control" value={{request.form.min_thresh}}
+      {{min_thresh}} >
+    </div>
+    <div class="form-group">
+      <label>Add Ratio</label>
+      <input type="text" name="add_r" class="form-control" value={{request.form.add_r}}
+      {{add_r}} >
+    </div>
+    <div class="form-group">
+      <label>Reduction Ratio</label>
+      <input type="text" name="red_r" class="form-control" value={{request.form.red_r}}
+      {{red_r}} >
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+  </form>
+{% endblock %}

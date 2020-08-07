@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Main Page</title>
+  
+</head>
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li2 {
+	float: right;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li2 a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+li2 a:hover {
+  background-color: #111;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: url("https://cache.marriott.com/marriottassets/marriott/YYZXR/yyzxr-attractions-toronto-skyline-5677-hor-feat.jpg?interpolation=progressive-bilinear&downsize=2000px:*");
+  background-size: auto;
+  background-repeat: no-repeat;
+  
+}
+
+.container {
+  padding: 16px;
+  background-color: white;
+  opacity: 0.5;
+}
+
+
+</style>
+
+<body>
+
+<div id="main">
+  <h1 style="text-align:center;">Detect TO.</h1> 
+  <ul>
+  <li><a class="active" href="{{ url_for('home') }}">Home</a></li>
+  <li><a href="{{ url_for('upload') }}">Upload</a></li>
+  <li><a href="{{ url_for('gallery') }}">Gallery</a></li>
+  <li2><a href="{{ url_for('login') }}">Sign In</a></li2>
+  <li2><a href="{{ url_for('register') }}">Sign Up</a></li2>
+  
+	</ul>
+  <div class="container"
+  <p style="font-size: 200%; text-align: center;">Upload an image to our website and automatically detect the objects in that image!!!</p>
+  </div>
+
+  
+</div>
+
+</body>
+</html> 

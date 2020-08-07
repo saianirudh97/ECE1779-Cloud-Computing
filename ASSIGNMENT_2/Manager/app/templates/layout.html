@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>AWS Manager</title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     <script type="text/javascript" src="{{ url_for('static', filename='flot/jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='flot/jquery.flot.js') }}"></script>
+  </head>
+
+  <body>
+    {% include 'includes/_navbar.html' %}
+    <div class="container">
+        {% block content %}
+        {% include 'includes/_messages.html'%}
+        {% block body %}{% endblock %}{% endblock %}
+    </div>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    </script>
+  </body>
+</html>

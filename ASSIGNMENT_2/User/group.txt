@@ -1,0 +1,24 @@
+Team members
+
+Name
+Utorid
+Student Number
+Email Address
+
+1.
+Sai Anirudh Basamsetty
+basamset
+1006042747
+anirudh.basamsetty@mail.utoronto.ca
+
+2.
+Zobair Ahmed Khan
+khanzoba
+1005611875
+zobair.khan@mail.utoronto.ca
+
+3.
+Shreya Kishore Madathingal
+madathin
+1005620151
+shreya.madathingal@mail.utoronto.ca

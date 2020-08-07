@@ -1,0 +1,57 @@
+<style>
+
+table, td, th {  
+  border: 2px solid #ddd;
+  text-align: center;
+}
+th { background-color: #92a8d1; }
+table {
+  border-collapse: collapse;
+  width: 50%;
+  margin-left: 25%
+}
+
+th, td {
+  padding: 15px;
+}
+</style>
+{% extends "layout.html" %}
+{% block content %}
+	<h1 style="text-align: center;">Instance Detail</h1>
+    <form  style="padding-left: 90%" action='{{url_for("home")}}' method='get'>
+        <input type='submit' value='Back' />
+    </form>
+
+    <table>
+        <tr><th>ID</th><td> {{ instance.id }}</td></tr>
+        <tr><th>Image AMI ID</th><td> {{ instance.image_id }}</td></tr>
+        <tr><th>Key Pair </th><td> {{ instance.key_name }}</td></tr>
+        <tr><th>Public IP Address</th><td>{{ instance.public_ip_address }}</td></tr>
+        <tr><th>State</td><td>{{ instance.state['Name'] }}</td></tr>
+    </table>
+
+
+     <h2>CPU</h2>
+
+    <div id="cpu_plot" style="width:300px;height:150px"></div>
+
+     <h2>HTTP Requests</h2>
+
+    <div id="http_requests" style="width:300px;height:150px"></div>
+
+        
+    <script>
+
+        var options = {
+            series: {
+                lines: { show: true },
+                points: { show: true }
+            }
+        };
+
+
+        $.plot($("#cpu_plot"), [ {{ cpu_stats }} ] , options);
+        $.plot($("#http_requests"), [ {{ http_req_stats }} ] , options);
+       
+    </script>
+{% endblock %}
