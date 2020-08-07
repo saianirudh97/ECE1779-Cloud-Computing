@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<title>Main Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+}
+
+li {
+  float: left;
+}
+
+li2 {
+	float: right;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li2 a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+li2 a:hover {
+  background-color: #111;
+}
+</style>
+<body>
+
+<!-- Header -->
+<header class="w3-container w3-theme w3-padding" id="myHeader">
+ 
+  <div class="w3-center">
+  
+  <h1 class="w3-xxxlarge w3-animate-bottom">HOMEPAGE</h1>
+    <ul>
+  <li><a class="active" href="{{ url_for('home') }}">Home</a></li>
+  <li><a href="{{ url_for('upload') }}">Upload</a></li>
+  <li2><a href="{{ url_for('logout') }}">Log Out</a></li2>
+
+	</ul>
+
+</header>
+<!-- Body -->
+<div class="w3-padding-64 w3-white">
+<div class="w3-row-padding">
+    <div class="w3-col l8 m6">
+  <p style="font-size: 150%;">Hello {{ username }}!</p><br>
+  <p style="font-size: 100%; color: #F30E3F;"> Latest daily update on COVID-19 cases worldwide</p>
+  <form action="{{ url_for('home') }}" action='get'>
+   <p>Confirmed Cases: {{conf}}</p> 
+  <p>Total Deaths: {{deaths}}</p>
+    <p>Total Recovered: {{recovered}}</p>
+    </form>
+	</div>
+	</div>	
+  </div>
+
+
+

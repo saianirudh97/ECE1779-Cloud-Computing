@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head><title>Gallery</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+<style>
+div.gallery {
+  border: 1px solid #ccc;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.responsive {
+  padding: 0 6px;
+  float: left;
+  width: 24.99999%;
+}
+
+@media only screen and (max-width: 700px) {
+  .responsive {
+    width: 49.99999%;
+    margin: 6px 0;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .responsive {
+    width: 100%;
+  }
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+}
+
+li {
+  float: left;
+}
+
+li2 {
+	float: right;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li2 a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+li2 a:hover {
+  background-color: #111;
+}
+body {
+background-image: linear-gradient(to right, gray , silver);
+}
+
+</style>
+</head>
+<body>
+<header class="w3-container w3-theme w3-padding" id="myHeader">
+ 
+  <div class="w3-center">
+  
+  <h1 class="w3-xxxlarge w3-animate-bottom">Gallery</h1>
+    <ul>
+  <li><a class="active" href="{{ url_for('home') }}">Home</a></li>
+  <li><a href="{{ url_for('upload') }}">Upload</a></li>
+  <li2><a href="{{ url_for('logout') }}">Log Out</a></li2>
+
+	</ul>
+
+</header>
+<p style="color: #BF0202;">{{msg if msg != None}}</p>
+
+<div class="row justify-content-center">
+ 
+  {% for label in labels_list %}
+    
+      <div class="label">
+        
+          <p><a type="button" class="btn btn-info" href="{{ url_for('show_tag', tag=label[0]) }}"> {{ label[0] }} </a>
+        
+        </div>
+    
+  {% endfor %}
+
+</div>
+
+
+
+
+<div class="row">
+     <div class="col-3">
+      {% for image in images %}
+      <a target="_blank" href="{{url_for('detail',s3_path=image)}}">
+        <img src="https://foodcal.s3.amazonaws.com/{{image4}}"></a>
+      
+     </a>
+     {% endfor %}
+     </div>
+     
+</div>
+
+
+
+
+
+
+<div class="clearfix"></div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head><title>Detail</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+div.gallery {
+  border: 1px solid #ccc;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.responsive {
+  padding: 0 6px;
+  float: left;
+  width: 24.99999%;
+}
+
+@media only screen and (max-width: 700px) {
+  .responsive {
+    width: 49.99999%;
+    margin: 6px 0;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .responsive {
+    width: 100%;
+  }
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+}
+
+li {
+  float: left;
+}
+
+li2 {
+	float: right;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li2 a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+li2 a:hover {
+  background-color: #111;
+}
+
+.container {
+       margin-top: 5%;
+     }
+</style>
+</head>
+<body>
+<header class="w3-container w3-theme w3-padding" id="myHeader">
+ 
+  <div class="w3-center">
+  
+  <h1 class="w3-xxxlarge w3-animate-bottom">NUTRITION ANALYSIS</h1>
+    <ul>
+  <li><a class="active" href="{{ url_for('home') }}">Home</a></li>
+  <li><a href="{{ url_for('upload') }}">Upload</a></li>
+  <li2><a href="{{ url_for('logout') }}">Log Out</a></li2>
+
+	</ul>
+
+</header>
+
+<div class="w3-padding-64 w3-white">
+  <div class="w3-row-padding">
+    <div class="w3-col l8 m6">
+<p style="color: #BF0202;">{{msg if msg != None}}</p>
+<p style="font-size: 150%;">{{ username }}'s Data</p>
+<h2 class="h2">Uploaded Image</h2>
+<form action="{{ url_for('show_tag', tag=tag)}}" method="get">
+            <img class="img-responsive" src="https://foodcal.s3.amazonaws.com/{{image_name}}" width="500" height="350"><br>
+            <div class="container">
+            <div class="w3-row-padding">
+            {% for label in label_score %}
+            <div class="label">
+                <a type="button" class="w3-button w3-black" href="{{ url_for('show_tag', tag=label[0]) }}"> {{ label[0] }} </a>
+            </div>
+        {% endfor %} </div></div>
+
+        <div class="w3-display-right w3-padding w3-hide-small" style="width:30% height:80%">
+          <div class="w3-white  w3-padding-large w3-round-large">
+            
+            <hr class="w3-opacity">
+            
+        <div id="piechart" style="width: 600px; height: 300px;"></div>
+    
+            
+          </div></div>
+ 
+			
+		</form>
+    <p>Calories = {{ calories}}</p> 
+    <p>Fat = {{ fat}}</p>
+    <p>Carbohydrate = {{ carbohydrate}}</p>
+    <p>Protein = {{ protein}}</p>
+  </div>
+</div>
+</div>
+	
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Food composition', 'per 100 g'],
+          ['Fat',     {{fat}}],
+          ['Protein',      {{protein}}],
+          ['Carbohydrate',  {{carbohydrate}}],
+         
+        ]);
+
+        var options = {
+          title: 'Food Composition'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
+
+</body>
+</html>
