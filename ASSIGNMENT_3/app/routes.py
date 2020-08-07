@@ -9,8 +9,8 @@ from boto3.dynamodb.conditions import Key, Attr
 from .utils import is_logged_in
 from operator import itemgetter
 
-ACCESS_KEY = 'AKIAJVXRE2EDKCWVVLFA'
-SECRET_KEY = '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'
+ACCESS_KEY = 
+SECRET_KEY = 
 
 HOME= 'app'
 IMG_FOLDER = 'static'
