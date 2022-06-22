@@ -3,5 +3,5 @@ flask==1.1.1
 mysql-connector-python==8.0.17
 wand==0.5.7
 opencv-python==4.1.1.26
-numpy==1.17.2
+numpy==1.22.0
 gunicorn==19.9.0
