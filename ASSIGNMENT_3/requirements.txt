@@ -15,7 +15,7 @@ jmespath==0.9.3
 MarkupSafe==1.1.0
 mysql-connector-python==8.0.17
 mysqlclient==1.4.2
-numpy==1.17.2
+numpy==1.22.0
 opencv-python==4.1.1.26
 passlib==1.7.2
 pathvalidate==0.24.1
